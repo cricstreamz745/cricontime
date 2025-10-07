@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>r</title>
+
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+    }
+    /* Container stretches full width */
+    .plyr__video-embed {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Plyr Embed -->
+  <div class="plyr__video-embed" id="player">
+    <iframe
+      src="https://www.youtube.com/embed/GeSb2P2H-cc?autoplay=1&mute=1&enablejsapi=1&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&controls=0"
+      allowfullscreen
+      allowtransparency
+      allow="autoplay; encrypted-media"
+    ></iframe>
+  </div>
+
+  <!-- Plyr JS -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    const player = new Plyr('#player', {
+      controls: [
+        'play-large',
+        'play', 'progress', 'current-time', 'mute', 'volume',
+        'settings', 'fullscreen'
+      ],
+      youtube: {
+        noCookie: true,
+        rel: 0,
+        modestbranding: 1,
+        showinfo: 0
+      }
+    });
+  </script>
+
+</body>
+</html>
