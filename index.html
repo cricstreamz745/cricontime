@@ -67,7 +67,22 @@ header.scrolled { background-color: rgba(0,0,0,0.6); }
   display: flex;
   gap: 15px;
 }
+.poster-card {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
+.poster-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.poster-card:not(.active) {
+  opacity: 0;
+  z-index: 1;
+}
 .upcoming-carousel .upcoming-card:first-child {
   margin-left: 0; /* remove any left padding/margin for first card */
 }
@@ -1248,6 +1263,27 @@ function renderFancodeMatches(matches) {
 
 // Call this function after the page loads
 loadFancodeMatches();
+  function scrollToSlide(index){
+  const cards = slider.querySelectorAll('.poster-card');
+  if(!cards.length) return;
+  currentSlide = index;
+
+  // deactivate all
+  cards.forEach(c => c.classList.remove('active'));
+  
+  // activate current
+  const activeCard = cards[currentSlide];
+  activeCard.classList.add('active');
+
+  // smooth scroll to center
+  const sliderRect = slider.getBoundingClientRect();
+  const cardRect = activeCard.getBoundingClientRect();
+  const offset = cardRect.left - sliderRect.left - (sliderRect.width - cardRect.width)/2;
+  slider.scrollLeft += offset;
+
+  updateDots();
+  }
+  slider.querySelector('.poster-card').classList.add('active');
 </script>
 
 </body>
