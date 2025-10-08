@@ -888,7 +888,7 @@ fetch('https://raw.githubusercontent.com/Cricketstan/Allrounder-/refs/heads/main
   .then(res => res.json())
   .then(data => {
     // Only take the first 3 posters
-    const posters = data.posters.slice(0, 3); 
+    const posters = data.posters.slice(0, 4); 
     totalSlides = posters.length;
     createDots(totalSlides);
 
